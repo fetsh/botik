@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+command = ARGV[1].shift
+options = ARGV
+raise(ArgumentError, 'Ony `new` command supported') unless command == 'new'
+raise(ArgumentError, 'Provide project name') if options.empty? || options.size > 1
+project_name = options.shift
+
+require 'fileutils'
+require 'active_support/core_ext/string/inflections'
+
+FileUtils.cp_r(File.join(File.dirname(__FILE__), '..', 'lib', 'template'), project_name)
+
+Dir[File.join(project_name, '**', '*.rb')].each {
+IO.write(filepath, File.open(filepath) do |f|
+    f.read.gsub(/Template/, project_name.classify)
+  end
+)
