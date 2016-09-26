@@ -8,6 +8,7 @@ require 'botik/telegram_bot_ext'
 require 'botik/configuration'
 require 'botik/app'
 require 'botik/controller'
+require 'botik/message'
 
 module Botik
 end

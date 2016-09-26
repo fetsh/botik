@@ -32,5 +32,9 @@ module Botik
     rescue Exception => exception
       rescue_with_handler(exception) || raise(exception)
     end
+
+    def send_message(message_class, opts: {}, with: bot, to: update.chat.id)
+      with.api.send_message(message_class.new(opts).to(to))
+    end
   end
 end
