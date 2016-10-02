@@ -23,7 +23,16 @@ module Botik
     attr_reader :update
 
     def initialize(update)
-      @update = update
+      # Telegram::Bot::Types::Update.new(TheOldReader::App.bot.fetch_updates(&:to_h).first)
+      if update.is_a?(Telegram::Bot::Types::Update)
+        @update = update
+      else
+        if update.respond_to?(:body)
+          update.body.rewind
+          update = update.body.read
+        end
+        @update = Telegram::Bot::Types::Update.new(MultiJson.load(update))
+      end
     end
 
     def process
