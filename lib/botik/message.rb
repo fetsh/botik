@@ -11,7 +11,8 @@ module Botik
 
     [
       :text, :parse_mode, :disable_web_page_preview,
-      :disable_notification, :reply_to_message_id, :reply_markup
+      :disable_notification, :reply_to_message_id, :reply_markup,
+      :caption, :photo, :document
     ].each do |s|
       define_method(s) do
         nil
@@ -22,6 +23,9 @@ module Botik
       {
         text: text,
         chat_id: chat_id,
+        photo: photo,
+        caption: caption,
+        document: document,
         parse_mode: parse_mode,
         disable_web_page_preview: disable_web_page_preview,
         disable_notification: disable_notification,

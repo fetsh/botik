@@ -34,7 +34,7 @@ module Botik
     end
 
     def send_message(message_class, opts: {}, with: bot, to: update.chat.id)
-      with.api.send_message(message_class.new(opts).to(to))
+      Helpers.send_message(message_class, opts: opts, with: with, to: to)
     end
   end
 end
