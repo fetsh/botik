@@ -46,7 +46,7 @@ class Telegram::Bot::Types::Update
   end
 
   def text_message?
-    message? && message.text
+    message? && text_message.text
   end
 
   def text_message
