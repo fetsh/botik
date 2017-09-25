@@ -36,5 +36,9 @@ module Botik
     def send_message(message_class, opts: {}, with: bot, to: update.chat.id)
       Helpers.send_message(message_class, opts: opts, with: with, to: to)
     end
+
+    def edit_message(message_class, opts: {}, with: bot, to: update.callback_query.message.chat.id, message_id: update.callback_query.message.message_id)
+      Helpers.edit_message(message_class, opts: opts, with: with, to: to, message_id: message_id)
+    end
   end
 end
