@@ -12,7 +12,7 @@ module Botik
     [
       :text, :parse_mode, :disable_web_page_preview,
       :disable_notification, :reply_to_message_id, :reply_markup,
-      :caption, :photo, :document
+      :caption, :photo, :document, :message_id
     ].each do |s|
       define_method(s) do
         nil
@@ -23,6 +23,7 @@ module Botik
       {
         text: text,
         chat_id: chat_id,
+        message_id: message_id,
         photo: photo,
         caption: caption,
         document: document,
@@ -35,7 +36,14 @@ module Botik
     end
 
     def chat_id
-      opts[:update].chat.id if opts[:update]
+      return nil unless opts[:update]
+      opts[:update].callback_query.message.chat.id if opts[:update].callback?
+      opts[:update].chat.id
+    end
+
+    def message_id
+      return nil unless opts[:update]
+      opts[:update].callback_query.message.message_id if opts[:update].callback?
     end
 
     def to(id)
