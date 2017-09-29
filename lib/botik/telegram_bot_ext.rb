@@ -1,13 +1,12 @@
-class Telegram::Bot::Types::Base
-  include Virtus.model
+module Telegram::Bot::Types::Compactable
   def to_hash_recursive
     Hash[attributes.dup.delete_if { |_, v| v.nil? }.map do |key, value|
       value =
-        if value.class.ancestors.include?(Telegram::Bot::Types::Base)
+        if value.class.ancestors.include?(Telegram::Bot::Types::Compactable)
           value.to_hash_recursive
         elsif value.is_a?(Array)
           value.map do |item|
-            if item.class.ancestors.include?(Telegram::Bot::Types::Base)
+            if item.class.ancestors.include?(Telegram::Bot::Types::Compactable)
               item.to_hash_recursive
             else
               item
