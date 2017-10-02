@@ -29,7 +29,7 @@ end
 class Telegram::Bot::Types::Update
   def incoming
     inline_query || chosen_inline_result || callback_query ||
-      edited_message || message
+      edited_message || message || channel_post
   end
 
   def chat
