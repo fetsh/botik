@@ -49,7 +49,7 @@ class Telegram::Bot::Types::Update
   end
 
   def text_message
-    message || edited_message
+    message || edited_message || channel_post
   end
 
   def command_message?
