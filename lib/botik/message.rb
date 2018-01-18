@@ -21,7 +21,7 @@ module Botik
 
     def message
       {
-        text: text,
+        text: text.encode(Encoding.find('UTF-8'), {invalid: :replace, undef: :replace, replace: ''}),
         chat_id: chat_id,
         message_id: message_id,
         photo: photo,
