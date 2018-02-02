@@ -12,7 +12,7 @@ module Botik
     [
       :text, :parse_mode, :disable_web_page_preview,
       :disable_notification, :reply_to_message_id, :reply_markup,
-      :caption, :photo, :document, :message_id
+      :caption, :photo, :document, :message_id, :media
     ].each do |s|
       define_method(s) do
         nil
@@ -31,7 +31,8 @@ module Botik
         disable_web_page_preview: disable_web_page_preview,
         disable_notification: disable_notification,
         reply_to_message_id: reply_to_message_id,
-        reply_markup: reply_markup
+        reply_markup: reply_markup,
+        media: media
       }
     end
 
