@@ -10,6 +10,7 @@ require 'botik/helpers'
 require 'botik/app'
 require 'botik/controller'
 require 'botik/message'
+require 'botik/edit_message'
 
 module Botik
 end
