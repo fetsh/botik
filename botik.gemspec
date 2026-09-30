@@ -1,29 +1,34 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'botik/version'
+# frozen_string_literal: true
+
+require_relative "lib/botik/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "botik"
   spec.version       = Botik::VERSION
-  spec.authors       = ["Ilia Zemskov at Ashdod"]
+  spec.authors       = ["Ilia Zemskov"]
   spec.email         = ["il.zoff@gmail.com"]
 
-  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
-  spec.homepage      = "https://bitbucket.org/ilzoff/botik"
+  spec.summary       = "Rails-style framework for Telegram bots: routes, controllers, views."
+  spec.description   = <<~DESC
+    Botik lets you build Telegram bots the way you build Rails apps: a routing DSL
+    maps updates to controller actions, controllers use before/after actions and
+    rescue_from, and replies are rendered from ERB views. Several independent bots
+    (each with its own token, routes, controllers and views) can live in one project.
+  DESC
+  spec.homepage      = "https://github.com/fetsh/botik"
   spec.license       = "MIT"
+  spec.required_ruby_version = ">= 3.3"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.metadata = {
+    "homepage_uri" => spec.homepage,
+    "source_code_uri" => spec.homepage,
+    "changelog_uri" => "#{spec.homepage}/blob/master/CHANGELOG.md",
+    "rubygems_mfa_required" => "true"
+  }
+
+  spec.files = Dir["lib/**/*", "docs/**/*", "README.md", "CHANGELOG.md", "LICENSE.txt"]
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.13"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_dependency "activesupport"
-  spec.add_dependency "telegram-bot-ruby"
+  spec.add_dependency "activesupport", ">= 7.1"
+  spec.add_dependency "erubi", "~> 1.12"
 end

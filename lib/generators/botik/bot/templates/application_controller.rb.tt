@@ -1,0 +1,2 @@
+class <%= bot_class_name %>::ApplicationController < Botik::Controller
+end

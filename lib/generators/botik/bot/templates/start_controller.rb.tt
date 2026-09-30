@@ -1,0 +1,8 @@
+class <%= bot_class_name %>::StartController < <%= bot_class_name %>::ApplicationController
+  def show
+    @name = from.first_name
+  end
+
+  def help
+  end
+end

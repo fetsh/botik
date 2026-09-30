@@ -1,0 +1,62 @@
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "vendor/**/*"
+    - "tmp/**/*"
+    - "lib/generators/**/templates/**/*"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Exclude:
+    - "spec/**/*"
+
+Metrics/BlockLength:
+  AllowedMethods:
+    - class_methods
+    - included
+  Exclude:
+    - "spec/**/*"
+    - "lib/botik/tasks.rake"
+    - "*.gemspec"
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+Metrics/ParameterLists:
+  Max: 8
+
+Layout/LineLength:
+  Max: 120
+
+Naming/PredicateMethod:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+    - "spec/**/*"
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - "spec/fixtures/**/*"
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional

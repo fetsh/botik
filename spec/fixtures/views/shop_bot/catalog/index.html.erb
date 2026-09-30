@@ -1,0 +1,7 @@
+<b>Catalog</b>
+<% @items.each do |id, item| -%>
+<%= render "item", item: item %>
+<% end -%>
+<% inline_keyboard do |k|
+     @items.each_key { |id| k.button "##{id}", callback: "items/#{id}" }
+   end %>

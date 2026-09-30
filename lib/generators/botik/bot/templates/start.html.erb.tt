@@ -1,0 +1,3 @@
+Hello, <%%= bold(@name) %>! 👋
+
+Send /help to see what I can do.

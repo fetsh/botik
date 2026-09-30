@@ -1,20 +1,17 @@
-# require "bundler/gem_tasks"
+# frozen_string_literal: true
+
+require "bundler/gem_tasks"
 require "rspec/core/rake_task"
+require "rubocop/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
+RuboCop::RakeTask.new
 
-require 'bundler/gem_helper'
-
-module Bundler
-  class GemHelper
-    def rubygem_push(_path)
-      Bundler.ui.confirm "Pushed #{name} #{version} to NOWHERE"
-    end
-  end
+# The gem is published on GitHub only for now: `rake release` tags and pushes
+# to git but does not push to rubygems.org.
+Rake::Task["release:rubygem_push"].clear
+task "release:rubygem_push" do
+  puts "Skipping rubygems.org push (GitHub-only releases)."
 end
 
-namespace :gem do
-  Bundler::GemHelper.install_tasks
-end
-
-task :default => :spec
+task default: %i[spec rubocop]
